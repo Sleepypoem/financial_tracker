@@ -1,10 +1,22 @@
 import React from 'react';
-import Transactions from './Transactions';
+import TransactionList from './TransactionList';
 
+const transactionsObj = [
+    {
+        "date": "today",
+        "category": "salary",
+        "amount": 1000
+    },
+    {
+        "date": "yesterday",
+        "category": "gas",
+        "amount": 500
+    }
+];
 function DashBoard() {
     return (
         <div>
-            <Transactions transactions={[]} />
+            <TransactionList transactions={transactionsObj} />
         </div>
     );
 }
