@@ -1,25 +1,21 @@
 import React, { useState } from 'react';
+import ChartElement from './ChartElement';
 import CategoriesList from './CategoriesList';
 import TransactionList from './TransactionList';
 
-const transactionsObj = [
-    {
-        "id": "1",
-        "date": "today",
-        "category": "salary",
-        "amount": 1000
-    },
-    {
-        "id": "2",
-        "date": "yesterday",
-        "category": "gas",
-        "amount": 500
-    }
-];
+
 function DashBoard() {
 
-    const [categories, setCategories] = useState([{ "id": 1, "name": "electricity", "type": "spend" }]);
-    const [transactions, setTransactions] = useState(transactionsObj);
+    const [categories, setCategories] = useState([]);
+    const [transactions, setTransactions] = useState([]);
+
+    const addTransaction = (transaction) => {
+        setTransactions([...transactions, transaction]);
+    }
+
+    const addCategory = (category) => {
+        setCategories([...categories, category]);
+    }
 
     const deleteTransaction = (id) => {
         let transactionsNew = transactions.filter((transaction) => id !== transaction.id);
@@ -27,10 +23,17 @@ function DashBoard() {
         setTransactions(transactionsNew);
     }
 
+    const deleteCategory = (id) => {
+        let categoriesNew = categories.filter((category) => id !== category.id);
+
+        setCategories(categoriesNew);
+    }
+
     return (
-        <div>
-            <CategoriesList categories={categories} />
-            <TransactionList deleteTransaction={deleteTransaction} transactions={transactions} />
+        <div className='container-fluid d-flex flex-row'>
+            <CategoriesList categories={categories} addCategory={addCategory} deleteCategory={deleteCategory} />
+            <TransactionList deleteTransaction={deleteTransaction} transactions={transactions} addTransaction={addTransaction} categories={categories} />
+            <ChartElement transactions={transactions} />
         </div>
     );
 }
