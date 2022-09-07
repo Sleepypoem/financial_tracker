@@ -11,9 +11,9 @@ function Transaction(props) {
     return (
         <tr className="">
             <td >{date}</td>
-            <td>{category}</td>
+            <td>{category.name}</td>
             <td>{amount}</td>
-            <td><button onClick={handleClick} className='btn btn-danger btn-sm'>X</button></td>
+            <td className='text-end'><button onClick={handleClick} className='btn btn-danger btn-sm'>X</button></td>
         </tr>
     );
 }
