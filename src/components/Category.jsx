@@ -2,12 +2,18 @@ import React from 'react';
 
 function Category(props) {
 
-    const { name, type } = props;
+    const { name, type, id, deleteCategory } = props;
+
+    const handleClick = () => {
+        deleteCategory(id)
+    }
+
+
     return (
         <tr>
             <td>{name}</td>
             <td>{type}</td>
-            <td className='text-end'><button className='btn btn-danger btn-sm'>X</button></td>
+            <td className='text-end'><button onClick={handleClick} className='btn btn-danger btn-sm'>X</button></td>
         </tr>
     );
 }
